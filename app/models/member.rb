@@ -1,0 +1,16 @@
+class Member < ApplicationRecord
+  belongs_to :user, class_name: 'User', foreign_key: 'user_id'
+  has_many :groups, through: :group_members
+  has_many :group_members, foreign_key: 'group_id', dependent: :destroy
+
+  mount_uploader :picture, ImageUploader
+
+  validates :name, presence: true
+  validates :phone_number, presence: true
+  validates :occupation, presence: true
+  validates :picture, presence: true
+  validates :distance, presence: true
+  validates :active, presence: true
+  validates :post_held, presence: true
+  validates :birthday, presence: true
+end
