@@ -33,18 +33,22 @@ class MembersController < ApplicationController
     else
       render json: { errors: created_member.errors.full_messages },
              status: :unprocessible_entity
-      @group = created_member
+      @member = created_member
       render :new
     end
   end
 
   def update
     if @member.update(member_params)
-      render json: @member, status: :created
+      render json: @member, status: :updated
     else
       render json: { errors: @member.errors.full_messages },
              status: :unprocessible_entity
     end
+  end
+
+  def destroy
+    @member.destroy
   end
 
   private
