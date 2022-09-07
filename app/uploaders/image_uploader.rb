@@ -1,4 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
+  # rubocop:disable Lint/Void
   Cloudinary::CarrierWave
   CarrierWave.configure do |config|
     config.cache_storage = :file
@@ -52,4 +53,5 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  # rubocop:enable Lint/Void
 end
