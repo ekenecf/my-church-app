@@ -2,10 +2,11 @@ Rails.application.routes.draw do
 
   resources :users
   resources :members, only: %i[index show]
+  resources :groups, only: %i[index show]
 
   resources :users do
     resources :members, only: %i[index new show create destroy update]
-    # resources :deals, only: %i[index new show create destroy]
+    resources :groups, only: %i[index new show create destroy update]
   end
 
   post '/auth/login', to: 'authentication#login'
