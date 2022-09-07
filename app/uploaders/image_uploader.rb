@@ -1,13 +1,12 @@
 class ImageUploader < CarrierWave::Uploader::Base
-
   Cloudinary::CarrierWave
   CarrierWave.configure do |config|
-  config.cache_storage = :file
- end
+    config.cache_storage = :file
+  end
 
-   def extension_whitelist
+  def extension_whitelist
     %w[jpg jpeg gif png]
-   end
+  end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
