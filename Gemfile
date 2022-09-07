@@ -9,6 +9,12 @@ gem 'rails', '~> 7.0.3', '>= 7.0.3.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 
+gem 'carrierwave'
+
+gem 'cloudinary'
+
+gem 'figaro'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
