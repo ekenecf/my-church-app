@@ -15,17 +15,17 @@ class MembersController < ApplicationController
   end
 
   def create
-    params = member_params
-    created_member = Member.new(name: params[:name], phone_number: params[:phone_number],
-                                occupation: params[:occupation], picture: params[:picture],
-                                distance: params[:distance], active: params[:active], post_held: params[:post_held],
-                                birthday: params[:birthday])
+    member_p = member_params
+    created_member = Member.new(name: member_p[:name], phone_number: member_p[:phone_number],
+                                occupation: member_p[:occupation], picture: member_p[:picture],
+                                distance: member_p[:distance], active: member_p[:active],
+                                post_held: member_p[:post_held], birthday: member_p[:birthday])
     @user = User.find(params[:user_id])
     created_member.user = @user
     created_member.user_id = @user.id
 
     if created_member.save
-      @group = Group.find(params[:group_id])
+      @group = Group.find(member_p[:group_id])
       created_member.groups << @group
       render json: created_member, status: :created
       flash[:notice] = 'member created successfully.'

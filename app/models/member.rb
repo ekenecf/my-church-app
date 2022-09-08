@@ -6,7 +6,7 @@ class Member < ApplicationRecord
   mount_uploader :picture, ImageUploader
 
   validates :name, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, length: { minimum: 0, maximum: 11 }
   validates :occupation, presence: true
   validates :picture, presence: true
   validates :distance, presence: true
