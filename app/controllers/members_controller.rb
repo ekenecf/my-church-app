@@ -9,7 +9,7 @@ class MembersController < ApplicationController
 
   def show
     render json: @member, status: :ok
- end
+  end
 
   def new
     @user = User.find(params[:user_id])
@@ -20,9 +20,9 @@ class MembersController < ApplicationController
   def create
     member_p = member_params
     @created_member = Member.new(name: member_p[:name], phone_number: member_p[:phone_number],
-                                occupation: member_p[:occupation], picture: member_p[:picture],
-                                distance: member_p[:distance], active: member_p[:active],
-                                post_held: member_p[:post_held], birthday: member_p[:birthday])
+                                 occupation: member_p[:occupation], picture: member_p[:picture],
+                                 distance: member_p[:distance], active: member_p[:active],
+                                 post_held: member_p[:post_held], birthday: member_p[:birthday])
     @user = User.find(params[:user_id])
     @created_member.user = @user
     @created_member.user_id = @user.id
