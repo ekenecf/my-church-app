@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  skip_before_action :authenticate_request
+  skip_before_action :authenticate_request, only: %i[show index]
   before_action :set_member_params, only: %i[show update destroy]
 
   def index
