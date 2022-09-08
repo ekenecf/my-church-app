@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  include JsonWebToken
   skip_before_action :authenticate_request, only: [:create]
   before_action :set_user, only: %i[show destroy update]
 

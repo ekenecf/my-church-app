@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :events, only: %i[index new show create destroy update]
   end
 
+  root "groups#index"
+
   post '/auth/login', to: 'authentication#login'
 
 end
