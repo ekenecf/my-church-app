@@ -1,24 +1,73 @@
-# README
+## Church App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description 
+Church App is a web application API that keeps records of events, groups, youths of my church with regards to the group they belong to ie a member must belong to a group.
 
-Things you may want to cover:
+[Live Demo Here Backend](https://stcharlescyon.herokuapp.com/) 
 
-* Ruby version
+### Cloning the project
 
-* System dependencies
+ git clone https://github.com/ekenecf/my-church-app.git <Your-Build-Directory>
+``` 
+- cd Budget-app
+- rails s
+```
 
-* Configuration
+## Built with
+- Ruby 3.1.2 on Rails 7.0.3.1
+- PostgreSQL
 
-* Database creation
+## Prerequisites
 
-* Database initialization
+Vscode or any-other
+Setup
 
-* How to run the test suite
+## Install
+    Ruby
+    Rails
 
-* Services (job queues, cache servers, search engines, etc.)
+### Development Database
 
-* Deployment instructions
+```sh
+# Load the schema
+rails db:schema:load
+#----- If you want prefer this approach
+# Create the database
+rake db:create
+# Create database Migration
+rails db:migrate
+```
 
-* ...
+### Run
+
+```sh
+rails s
+```
+
+## Run tests
+```sh
+bundle install
+rspec
+```
+
+## Author
+
+👤 **Nwachukwu Ekene**
+
+- GitHub: [@ekenecf](https://github.com/ekenecf)
+- LinkedIn: [Nwachukwu-Ekene](https://www.linkedin.com/in/nwachukwuekene/)
+- Twitter: [Nwachukwu-Ekene](https://www.twitter.com/ekene070)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/ekenecf/my-church-app/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](/LICENSE) licensed.
