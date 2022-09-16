@@ -14,7 +14,7 @@ class MembersController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @member = Member.new
-    @groups = @user.groups.where(user_id: @user.id).order(:name)
+    @groups = @user.groups.where(user_id: @user.id)
   end
 
   def create
@@ -61,7 +61,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:deal).permit(:name, :phone_number, :occupation, :picture, :distance, :active, :post_held,
-                                 :birthday, :group_id)
+    params.require(:member).permit(:name, :phone_number, :occupation, :picture, :distance, :active, :post_held,
+                                   :birthday, :group_id)
   end
 end
