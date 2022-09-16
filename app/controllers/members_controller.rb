@@ -61,7 +61,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:deal).permit(:name, :phone_number, :occupation, :picture, :distance, :active, :post_held,
+    params.require(:member).permit(:name, :phone_number, :occupation, :picture, :distance, :active, :post_held,
                                  :birthday, :group_id)
   end
 end
