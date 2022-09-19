@@ -31,8 +31,6 @@ class MembersController < ApplicationController
       @group = Group.find(member_p[:group_id])
       @created_member.groups << @group
       render json: @created_member, status: :created
-      flash[:notice] = 'member created successfully.'
-      redirect_to user_members_path(@user, @created_member)
     else
       render json: { errors: @created_member.errors.full_messages },
              status: :unprocessible_entity
