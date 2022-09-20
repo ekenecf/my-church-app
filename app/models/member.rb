@@ -9,8 +9,6 @@ class Member < ApplicationRecord
   validates :phone_number, presence: true, length: { minimum: 0, maximum: 11 }
   validates :occupation, presence: true
   validates :picture, presence: true
-  validates :distance, presence: true
-  validates :active, presence: true
   validates :post_held, presence: true
   validates :birthday, presence: true
 end

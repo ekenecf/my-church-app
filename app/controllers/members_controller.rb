@@ -11,24 +11,17 @@ class MembersController < ApplicationController
     render json: @member, status: :ok
   end
 
-  def new
-    @user = User.find(params[:user_id])
-    @member = Member.new
-    @groups = @user.groups.where(user_id: @user.id)
-  end
-
   def create
-    member_p = member_params
-    @created_member = Member.new(name: member_p[:name], phone_number: member_p[:phone_number],
-                                 occupation: member_p[:occupation], picture: member_p[:picture],
-                                 distance: member_p[:distance], active: member_p[:active],
-                                 post_held: member_p[:post_held], birthday: member_p[:birthday])
+    @created_member = Member.new(name: member_params[:name], phone_number: member_params[:phone_number],
+                                 occupation: member_params[:occupation], picture: member_params[:picture],
+                                 distance: member_params[:distance], active: member_params[:active],
+                                 post_held: member_params[:post_held], birthday: member_params[:birthday])
     @user = User.find(params[:user_id])
     @created_member.user = @user
     @created_member.user_id = @user.id
 
     if @created_member.save
-      @group = Group.find(member_p[:group_id])
+      @group = Group.find(member_params[:group_id])
       @created_member.groups << @group
       render json: @created_member, status: :created
     else
@@ -40,7 +33,10 @@ class MembersController < ApplicationController
   end
 
   def update
-    if @member.update(member_params)
+    if @member.update(name: member_params[:name], phone_number: member_params[:phone_number],
+                      occupation: member_params[:occupation], picture: member_params[:picture],
+                      distance: member_params[:distance], active: member_params[:active],
+                      post_held: member_params[:post_held], birthday: member_params[:birthday])
       render json: @member, status: :updated
     else
       render json: { errors: @member.errors.full_messages },
