@@ -48,6 +48,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.permit(:name, :image, :description, :date, :user_id)
+    params.permit(:name, :image, :image1, :image2, :image3, :image4, :description, :date, :user_id)
   end
 end

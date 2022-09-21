@@ -6,7 +6,6 @@ class CreateMembers < ActiveRecord::Migration[7.0]
       t.string :occupation
       t.string :picture
       t.boolean :distance
-      t.boolean :active
       t.string :post_held
       t.string :birthday
       t.references :user, foreign_key: { to_table: 'users' }
