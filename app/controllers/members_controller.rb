@@ -18,12 +18,11 @@ class MembersController < ApplicationController
                                  distance: member_params[:distance],
                                  post_held: member_params[:post_held], birthday: member_params[:birthday])
     @user = User.find(params[:user_id])
-    @created_member.user = @user
+    @group = Group.find(params[:group_id])
     @created_member.user_id = @user.id
+    @created_member.group_id = @group.id
 
     if @created_member.save
-      @group = Group.find(member_params[:group_id])
-      @created_member.groups << @group
       render json: @created_member, status: :created
     else
       render json: { errors: @created_member.errors.full_messages },

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_125448) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_07_135935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,15 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_125448) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
-  create_table "group_members", force: :cascade do |t|
-    t.bigint "group_id"
-    t.bigint "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_members_on_group_id"
-    t.index ["member_id"], name: "index_group_members_on_member_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -57,8 +48,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_125448) do
     t.string "post_held"
     t.string "birthday"
     t.bigint "user_id"
+    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_members_on_group_id"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
@@ -71,8 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_125448) do
   end
 
   add_foreign_key "events", "users"
-  add_foreign_key "group_members", "groups"
-  add_foreign_key "group_members", "members"
   add_foreign_key "groups", "users"
+  add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
 end
