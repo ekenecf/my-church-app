@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :events, only: %i[index show]
 
   resources :users do
-    resources :members, only: %i[index new show create destroy update]
-    resources :groups, only: %i[index new show create destroy update]
-    resources :events, only: %i[index new show create destroy update]
+    resources :events, only: %i[index show create destroy update]
+    resources :groups, only: %i[index show create destroy update] do
+    resources :members, only: %i[index show create destroy update]
+    end
   end
 
   root "groups#index"
