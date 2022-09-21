@@ -57,6 +57,6 @@ class MembersController < ApplicationController
 
   def member_params
     params.permit(:name, :phone_number, :occupation, :picture, :distance, :post_held,
-                                   :birthday, :group_id, :user_id)
+                  :birthday, :group_id, :user_id)
   end
 end
