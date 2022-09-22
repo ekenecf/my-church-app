@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  # wrap_parameters format: [:json]
   skip_before_action :authenticate_request
   before_action :set_member_params, only: %i[show update destroy]
 
@@ -55,6 +56,6 @@ class MembersController < ApplicationController
 
   def member_params
     params.permit(:name, :phone_number, :occupation, :picture, :distance, :post_held,
-                  :birthday)
+                  :birthday, :group_id, :user_id)
   end
 end
