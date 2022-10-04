@@ -1,5 +1,4 @@
 class MembersController < ApplicationController
-  # wrap_parameters format: [:json]
   skip_before_action :authenticate_request
   before_action :set_member_params, only: %i[show update destroy]
 
@@ -13,12 +12,9 @@ class MembersController < ApplicationController
   end
 
   def create
-    @created_member = Member.new(name: member_params[:name], phone_number: member_params[:phone_number],
-                                 occupation: member_params[:occupation], picture: member_params[:picture],
-                                 distance: member_params[:distance],
-                                 post_held: member_params[:post_held], birthday: member_params[:birthday])
     @user = User.find(params[:user_id])
     @group = Group.find(params[:group_id])
+    @created_member = Member.new(member_params)
     @created_member.user_id = @user.id
     @created_member.group_id = @group.id
 
@@ -55,7 +51,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.permit(:name, :phone_number, :occupation, :picture, :distance, :post_held,
-                  :birthday, :group_id, :user_id)
+    params.require(:member).permit(:name, :phone_number, :occupation, :picture, :distance, :post_held,
+                  :birthday, :user_id, :group_id)
   end
 end
