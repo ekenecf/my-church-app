@@ -12,9 +12,13 @@ class MembersController < ApplicationController
   end
 
   def create
+    image = Cloudinary::Uploader.upload(params[:picture])
     @user = User.find(params[:user_id])
     @group = Group.find(params[:group_id])
-    @created_member = Member.new(member_params)
+    @created_member = Member.new(picture: image['url'],  name: member_params[:name], phone_number: member_params[:phone_number],
+    occupation: member_params[:occupation], distance: member_params[:distance],
+    post_held: member_params[:post_held], birthday: member_params[:birthday])
+
     @created_member.user_id = @user.id
     @created_member.group_id = @group.id
 
@@ -51,7 +55,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(:name, :phone_number, :occupation, :picture, :distance, :post_held,
+    params.permit(:name, :phone_number, :occupation, :picture, :distance, :post_held,
                   :birthday, :user_id, :group_id)
   end
 end

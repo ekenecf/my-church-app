@@ -15,6 +15,10 @@ gem 'cloudinary'
 
 gem 'figaro'
 
+gem 'shrine', '~> 3.3'
+
+gem 'image_processing', '~> 1.12', '>= 1.12.1'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
