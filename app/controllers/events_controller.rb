@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show update destroy]
 
   def index
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
     render json: @events, status: :ok
   end
 
@@ -11,21 +11,17 @@ class EventsController < ApplicationController
     render json: @event, status: :ok
   end
 
-  def new
-    @event = Event.new
-  end
-
   def create
-    image = Cloudinary::Uploader.upload(params[:image])
-    image1 = Cloudinary::Uploader.upload(params[:image1])
-    image2 = Cloudinary::Uploader.upload(params[:image2])
-    image3 = Cloudinary::Uploader.upload(params[:image3])
-    image4 = Cloudinary::Uploader.upload(params[:image4])
-    image5 = Cloudinary::Uploader.upload(params[:image5])
-    puts image5, image
+    image0 = Cloudinary::Uploader.upload(params[:image])
+    first_image = Cloudinary::Uploader.upload(params[:image1])
+    second_image = Cloudinary::Uploader.upload(params[:image2])
+    third_image = Cloudinary::Uploader.upload(params[:image3])
+    forth_image = Cloudinary::Uploader.upload(params[:image4])
+    last_image = Cloudinary::Uploader.upload(params[:image5])
+
     @user = User.find(params[:user_id])
-    @event = Event.new(image: image['url'], image1: image1['url'], image2: image2['url'],
-                       image3: image3['url'], image4: image4['url'], image5: image5['url'],
+    @event = Event.new(image: image0['url'], image1: first_image['url'], image2: second_image['url'],
+                       image3: third_image['url'], image4: forth_image['url'], image5: last_image['url'],
                        name: event_params[:name], description: event_params[:description], date: event_params[:date])
 
     @event.user_id = @user.id
