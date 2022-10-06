@@ -46,6 +46,10 @@ class MembersController < ApplicationController
 
   def destroy
     @member.destroy
+
+    if @member.destroy
+      render status: :ok
+    end
   end
 
   private
