@@ -15,7 +15,8 @@ class MembersController < ApplicationController
     image = Cloudinary::Uploader.upload(params[:picture])
     @user = User.find(params[:user_id])
     @group = Group.find(params[:group_id])
-    @created_member = Member.new(picture: image['url'], name: member_params[:name], phone_number: member_params[:phone_number],
+    @created_member = Member.new(picture: image['url'], name: member_params[:name],
+                                 phone_number: member_params[:phone_number],
                                  occupation: member_params[:occupation], distance: member_params[:distance],
                                  post_held: member_params[:post_held], birthday: member_params[:birthday])
 
