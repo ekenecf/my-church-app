@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    image  = Cloudinary::Uploader.upload(params[:image])
+    image = Cloudinary::Uploader.upload(params[:image])
     image1 = Cloudinary::Uploader.upload(params[:image1])
     image2 = Cloudinary::Uploader.upload(params[:image2])
     image3 = Cloudinary::Uploader.upload(params[:image3])
@@ -25,8 +25,8 @@ class EventsController < ApplicationController
     puts image5, image
     @user = User.find(params[:user_id])
     @event = Event.new(image: image['url'], image1: image1['url'], image2: image2['url'],
-                        image3: image3['url'], image4: image4['url'], image5: image5['url'],
-                        name: event_params[:name], description: event_params[:description], date: event_params[:date] )
+                       image3: image3['url'], image4: image4['url'], image5: image5['url'],
+                       name: event_params[:name], description: event_params[:description], date: event_params[:date])
 
     @event.user_id = @user.id
 
