@@ -3,7 +3,7 @@ class MembersController < ApplicationController
   before_action :set_member_params, only: %i[show update destroy]
 
   def index
-    @members = Member.all
+    @members = Member.all.order(created_at: :desc)
     render json: @members, status: :ok
   end
 

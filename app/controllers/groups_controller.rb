@@ -3,11 +3,9 @@ class GroupsController < ApplicationController
   before_action :set_group, only: %i[show update destroy]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.order(created_at: :desc)
     render json: @groups, status: :ok
   end
-
-  def show; end
 
   def create
     @group = Group.new(group_params)
