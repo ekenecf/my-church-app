@@ -15,18 +15,11 @@ class EventsController < ApplicationController
     image0 = Cloudinary::Uploader.upload(params[:image])
     first_image = Cloudinary::Uploader.upload(params[:image1])
     second_image = Cloudinary::Uploader.upload(params[:image2])
-    third_image = Cloudinary::Uploader.upload(params[:image3])
-    forth_image = Cloudinary::Uploader.upload(params[:image4])
-    last_image = Cloudinary::Uploader.upload(params[:image5])
 
     @user = User.find(params[:user_id])
     @event = Event.new(image: image0['url'], image1: first_image['url'], image2: second_image['url'],
-                       image3: third_image['url'], image4: forth_image['url'], image5: last_image['url'],
                        name: event_params[:name], description: event_params[:description], date: event_params[:date])
-
     @event.user_id = @user.id
-
-    puts @event
     if @event.save
       render json: @event, status: :created
     else
@@ -45,7 +38,8 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.destroy
+    @user = User.find(params[:user_id])
+    @event.destroy if @user.id
   end
 
   private
@@ -55,6 +49,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.permit(:name, :image, :image1, :image2, :image3, :image4, :image5, :description, :date, :user_id)
+    params.permit(:name, :image, :image1, :image2, :description, :date, :user_id)
   end
 end

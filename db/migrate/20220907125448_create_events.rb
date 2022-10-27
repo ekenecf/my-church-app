@@ -5,9 +5,6 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.string :image
       t.string :image1
       t.string :image2
-      t.string :image3
-      t.string :image4
-      t.string :image5
       t.text :description
       t.string :date
       t.references :user, foreign_key: { to_table: 'users' }
